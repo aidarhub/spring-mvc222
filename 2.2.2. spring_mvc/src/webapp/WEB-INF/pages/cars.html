@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+
+        TH {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>
+            <div th:switch="__${#locale.language}__">
+                <p th:case="en">Cars</p>
+                <p th:case="ru">Машина</p>
+                <p th:case="*">Cars</p>
+            </div>
+        </th>
+        <th> Series</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td><span th:text="${car.model}"> Model </span></td>
+        <td><span th:text="${car.series}"> Series </span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
