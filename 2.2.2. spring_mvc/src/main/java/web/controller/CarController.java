@@ -13,20 +13,10 @@ import java.util.List;
 @Controller
 public class CarController {
 
-    private List<Car> list = new CarServiceImp().getCarList();
-
     @GetMapping(value = "/cars")
-    public String carPage( @RequestParam(value = "count", defaultValue = "7") Integer count, ModelMap model) {
-        List<Car> cars = new ArrayList<>();
-        if(count > 0 && count <=5) {
-            for(int i = 0; i < count; i++) {
-                cars.add(list.get(i));
-            }
-        } else if (count > 5) {
-            cars = list;
-        }
-        model.addAttribute("cars", cars);
+    public String carPage(@RequestParam(value = "count", defaultValue = "7") Integer count, ModelMap model) {
+        List<Car> serviceImp = new CarServiceImp().getCarList(count);
+        model.addAttribute("cars", serviceImp);
         return "cars";
     }
-
 }
